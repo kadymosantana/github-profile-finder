@@ -1,0 +1,7 @@
+@mixin responsive($d) {
+  @if $d == "medium" {
+    @media (max-width: 650px) {
+      @content;
+    }
+  }
+}
