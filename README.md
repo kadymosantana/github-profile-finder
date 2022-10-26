@@ -12,6 +12,6 @@ As seguintes ferramentas foram utilizadas durante o desenvolvimento:
 
 - Vue.js 3 (Composition API)
 - Vue CLI
-- SASS (SCSS)
+- SASS (sintaxe SCSS)
 - Babel
 - Vercel
