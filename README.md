@@ -1,5 +1,5 @@
 # GitHub Profile Finder 🔍
-![](https://i.imgur.com/CkyJ3sp.png)
+![](https://user-images.githubusercontent.com/98963793/200059664-0bf81343-8f5b-415b-aff2-1af2a8d88624.png)
 
 ## 🔛 Demo
 O deploy foi feito na plataforma de hospedagem Vercel. Acesse o projeto [neste link](https://github-profile-finder-pied-phi.vercel.app/)
