@@ -3,6 +3,7 @@
     @event-fetch-user="fetchUser"
     v-model="searchValue"
     :dataUser="dataUser"
+    :userNotFound="userNotFound"
   />
   <InfosUser :dataUser="dataUser" />
 </template>
@@ -21,17 +22,26 @@ export default {
 
   setup() {
     const dataUser = ref(null);
+    const userNotFound = ref(null);
     const searchValue = ref("");
 
     function fetchUser() {
       fetch(`https://api.github.com/users/${searchValue.value}`)
         .then((r) => r.json())
-        .then((r) => (dataUser.value = r));
-      searchValue.value = "";
+        .then((r) => {
+          if (!r.message) {
+            dataUser.value = r;
+            userNotFound.value = null
+            searchValue.value = "";
+          } else {
+            userNotFound.value = r
+          }
+        });
     }
 
     return {
       dataUser,
+      userNotFound,
       searchValue,
       fetchUser,
     };

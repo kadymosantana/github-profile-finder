@@ -1,5 +1,5 @@
 <template>
-  <form :style="style" @submit.prevent="$emit('eventFetchUser')">
+  <form ref="form" :style="style" @submit.prevent="$emit('eventFetchUser')">
     <div class="search-container">
       <svg width="24" height="24" viewBox="0 0 32 32">
         <path
@@ -30,19 +30,22 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { ref, computed } from "vue";
 export default {
   name: "FormSearch",
-  props: ["modelValue", "dataUser"],
+  props: ["modelValue", "dataUser", "userNotFound"],
   setup(props) {
     const style = computed(() => {
-      if (props.dataUser?.message) {
+      if (props.userNotFound) {
         return {
           border: "1px solid #b31d1d",
           boxShadow: "0px 0px 5px #eebbbb",
         };
       }
     });
+
+    const form = ref("form");
+
     return { style };
   },
 };
@@ -55,6 +58,7 @@ form {
   gap: 5px;
   width: 100%;
   background: #fff;
+  border: 1px solid transparent;
   border-radius: 12px;
   box-shadow: 0px 0px 10px #cbcfe4;
   padding: 10px;
