@@ -34,6 +34,8 @@ import { ref, computed } from "vue";
 export default {
   name: "FormSearch",
   props: ["modelValue", "dataUser", "userNotFound"],
+  emits: ["eventFetchUser", "update:modelValue"],
+  
   setup(props) {
     const style = computed(() => {
       if (props.userNotFound) {
