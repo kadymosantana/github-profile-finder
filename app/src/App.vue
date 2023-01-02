@@ -31,10 +31,10 @@ export default {
         .then((r) => {
           if (!r.message) {
             dataUser.value = r;
-            userNotFound.value = null
+            userNotFound.value = null;
             searchValue.value = "";
           } else {
-            userNotFound.value = r
+            userNotFound.value = r;
           }
         });
     }
