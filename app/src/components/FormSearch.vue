@@ -35,7 +35,7 @@ export default {
   name: "FormSearch",
   props: ["modelValue", "dataUser", "userNotFound"],
   emits: ["eventFetchUser", "update:modelValue"],
-  
+
   setup(props) {
     const style = computed(() => {
       if (props.userNotFound) {
@@ -64,6 +64,7 @@ form {
   border-radius: 12px;
   box-shadow: 0px 0px 10px #cbcfe4;
   padding: 10px;
+  transition: 0.5s;
 
   .search-container {
     display: flex;
