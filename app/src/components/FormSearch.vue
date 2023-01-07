@@ -46,14 +46,14 @@ export default {
       }
     });
 
-    const form = ref("form");
-
     return { style };
   },
 };
 </script>
 
 <style scoped lang="scss">
+@import "../scss/abstracts/mixins.scss";
+
 form {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -65,6 +65,10 @@ form {
   box-shadow: 0px 0px 10px #cbcfe4;
   padding: 10px;
   transition: 0.5s;
+
+  @include responsive("medium") {
+    margin-top: 100px;
+  }
 
   .search-container {
     display: flex;
