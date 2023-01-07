@@ -63,16 +63,4 @@ export default {
     padding: 30px;
   }
 }
-
-body {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background: #f1f4ff;
-  font-family: "Inter", sans-serif;
-  color: #222;
-  letter-spacing: -0.5px;
-}
 </style>
