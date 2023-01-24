@@ -1,51 +1,36 @@
 <template>
   <FormSearch
-    @event-fetch-user="fetchUser"
+    @fetch-user="fetchUser"
     v-model="searchValue"
     :dataUser="dataUser"
     :userNotFound="userNotFound"
   />
-  <InfosUser :dataUser="dataUser" />
+  <Transition mode="out-in">
+    <InfosUser v-if="dataUser?.id" :dataUser="dataUser" />
+  </Transition>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 import FormSearch from "@/components/FormSearch.vue";
 import InfosUser from "@/components/InfosUser.vue";
 
-export default {
-  name: "App",
-  components: {
-    FormSearch,
-    InfosUser,
-  },
+const dataUser = ref(null);
+const userNotFound = ref(null);
+const searchValue = ref("");
 
-  setup() {
-    const dataUser = ref(null);
-    const userNotFound = ref(null);
-    const searchValue = ref("");
-
-    function fetchUser() {
-      fetch(`https://api.github.com/users/${searchValue.value}`)
-        .then((r) => r.json())
-        .then((r) => {
-          if (!r.message) {
-            dataUser.value = r;
-            userNotFound.value = null;
-            searchValue.value = "";
-          } else {
-            userNotFound.value = r;
-          }
-        });
-    }
-
-    return {
-      dataUser,
-      userNotFound,
-      searchValue,
-      fetchUser,
-    };
-  },
+const fetchUser = () => {
+  fetch(`https://api.github.com/users/${searchValue.value}`)
+    .then((r) => r.json())
+    .then((r) => {
+      if (!r.message) {
+        dataUser.value = r;
+        userNotFound.value = null;
+        searchValue.value = "";
+      } else {
+        userNotFound.value = r;
+      }
+    });
 };
 </script>
 
@@ -62,5 +47,16 @@ export default {
     max-width: max-content;
     padding: 30px;
   }
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: 0.3s;
 }
 </style>
